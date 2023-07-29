@@ -1,46 +1,194 @@
-# Getting Started with Create React App
+# 用前必读
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**感谢王红元老师的开源精神**
 
-## Available Scripts
+这是我在学习ts+react的练手项目
 
-In the project directory, you can run:
+许多功能没有完善，以后有时间会慢慢完善这个项目的
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 目前实现
 
-### `npm test`
+- 首页数据的展示
+- 音乐的点击播放
+- 音乐的拖动播放与歌词的匹配
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 运行
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 安装依赖：`npm install`
+- 运行：`npm run start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# 项目目录结构划分
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+├── assets							# 静态资源文件
+│   └── css
+│   └── img
+│   └── data
+├── base-ui                         # 多项目复用组件
+├── components                      # 当前项目用到的组件
+├── hooks 							# 自定义hook
+├── router 							# 路由
+├── store 							# 仓库
+├── service 						# 网络请求
+├── utils 							# 工具
+├── views 							# 页面视图
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+# 其他纪录
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 在ts+react项目中配置路径
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 安装依赖：`npm install @craco/craco `
+
+- 根路径下创建 craco.config.js
+
+  - ```js
+    const path = require("path")
+    module.exports = {
+      webpack:{
+        alias:{
+          "@":path.resolve(__dirname,"src")
+        }
+      }
+    }
+    ```
+
+- 修改package.json文件的script字段
+
+  - ```js
+        "scripts": {
+            "start": "  start",
+            "build": "craco build",
+            "test": "craco test",
+            "eject": "react-scripts eject"
+         },
+    ```
+
+- tsconfig.json中配置
+
+  - ```json
+    // 在"jsx": "react-jsx",后添加
+    "baseUrl": ".",
+    "paths": {
+        "@/*":[
+            "src/*"
+        ]
+    }
+    ```
+
+- 重启
+
+
+
+
+## CSS样式的重置
+
+- 使用安装并导入`npm install normalize.css`
+- 配置自己的css重置
+  - `/assets/css/reset.less`
+
+
+
+## 路由配置
+
+
+
+## 设置.editorconfig
+
+**统一代码风格**
+
+```
+# http://editorconfig.org
+
+root = true
+
+[*] # 表示所有文件使用
+charset = utf-8
+indent_style = space    #缩进风格
+indent_size = 2 #缩进大小
+end_of_libe = lf # 控制换行类型
+trim_trailing_whitespace = true # 去除行尾空白字符
+insert_final_newline = true # 始终在文件末尾插入一个新行
+
+
+[*.md] # 表示仅对md文件应用以下规则
+max_line_length = off
+trim_trailing_whitespace = false
+```
+
+
+
+
+
+## 配置prettier工具
+
+格式化工具
+
+安装：`npm install prettier -D`
+
+配置`.prettierrc`
+
+- useTabs：使用tab缩进还是空格缩进，选false为空格
+- tabWidth：tab是空格的情况下，是几个空格，选2个
+- printWidth：当前字符的长度，推荐80
+- singleQuote：使用单引号还是双引号。true为单引号
+- trailingComma：在多行输入的为逗号添加，设置为none，如对象最后一个属性是否添加
+- semi：语句末尾是否要加分好，默认为true，false为不加
+
+```
+{
+    "useTabs": false,
+    "tabWidth": 2,
+    "printWidth": 80,
+    "singleQuote": true,
+    "trailingComa": "none",
+    "semi": false
+}
+```
+
+
+
+## 使用ESLint检测
+
+安装：`npm install eslint -D`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
